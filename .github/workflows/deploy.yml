@@ -22,9 +22,6 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Check Output Directory
-        run: ls -la ./
-
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.0.0
         with:
@@ -34,5 +31,5 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             cd /volume1/web/htdocs/hasethblog/app
-            rm -rf *
+            ls -la ./
             cp -r ./out/ .
