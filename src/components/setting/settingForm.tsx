@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { SettingTitleDisplay } from './settingTitle';
 import { SettingPriceDisplay } from './settingPrice';
-import { SettingQrSize} from './settingQR';
+import { SettingQrSize} from './settingQr';
 const SettingForm = () => {
   
 
