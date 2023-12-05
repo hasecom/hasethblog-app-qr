@@ -36,4 +36,4 @@ jobs:
           script: |
             cd /volume1/web/htdocs/hasethblog/app
             rm -rf *
-            cp -r ./out/ .
+            cp -r ./ .
