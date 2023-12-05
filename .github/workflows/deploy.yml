@@ -22,8 +22,12 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy via SFTP
-        run: |
-          scp -r -P ${{ secrets.SSH_PORT }} ./out/ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/volume1/web/htdocs/hasethblog/app/
-        env:
-          SFTP_PASSWORD: ${{ secrets.SSH_PASSWORD }}
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+        with:
+          server: ${{ secrets.SSH_SERVER }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: ${{ secrets.FTP_PORT }}
+          local-dir: ./out/
+          remote-dir: /volume1/web/htdocs/hasethblog/app/
