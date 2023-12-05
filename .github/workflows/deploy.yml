@@ -25,7 +25,7 @@ jobs:
 
       - name: Check Output Directory
         run: ls -la ./out
-        
+
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.0.0
         with:
@@ -36,4 +36,4 @@ jobs:
           script: |
             cd /volume1/web/htdocs/hasethblog/app
             rm -rf *
-            cp -r ./out/* .
+            cp -r ./out/ .
