@@ -23,6 +23,9 @@ jobs:
         run: npm run build
         working-directory: ./out
 
+      - name: Check Output Directory
+        run: ls -la ./out
+        
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.0.0
         with:
