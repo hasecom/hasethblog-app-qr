@@ -30,7 +30,4 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            ls -la ./
-            cd /volume1/web/htdocs/hasethblog/app
-            ls -la ./
-            cp -r ./README.md .
+            sshpass -p "${{ secrets.SSH_PASSWORD }}" scp -r ./out/* ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/volume1/web/htdocs/hasethblog/app/
