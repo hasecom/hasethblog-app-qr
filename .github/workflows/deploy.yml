@@ -32,7 +32,5 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             cd /volume1/web/htdocs/hasethblog/app
-
             rm -rf *
-
             cp -r /out/* .
