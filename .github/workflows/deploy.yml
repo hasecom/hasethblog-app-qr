@@ -40,5 +40,5 @@ jobs:
             rm -rf *
             git clone --depth=1 https://hasecom:${{ secrets.YOUR_PAT_SECRET }}@github.com/hasecom/hasethblog-app-qr.git -b prod Temp
             ls -la
-            mv Temp/out/* Temp/
+            mv Temp/out/* /
             ls -la
