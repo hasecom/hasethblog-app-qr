@@ -36,9 +36,10 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             cd /volume1/web/htdocs/hasethblog/app
+            ls -la
             rm -rf *
-            git clone --depth=1 https://hasecom:${{ secrets.YOUR_PAT_SECRET }}@github.com/hasecom/hasethblog-app-qr.git -b prod aaa
-            mv aaa/out/ ../
-            cd ../
+            git clone --depth=1 https://hasecom:${{ secrets.YOUR_PAT_SECRET }}@github.com/hasecom/hasethblog-app-qr.git -b prod ./
+            ls -la
+            mv out/ ./
             rm -rf out/
             ls -la
