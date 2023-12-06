@@ -19,10 +19,9 @@ const ResultModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   useEffect(() => {
     if (makerList?.resultImage) {
-      console.log(makerList?.resultImage)
       onOpen();
     }
-  }, [makerList?.resultImage]);
+  }, [makerList?.resultImage,onOpen]);
   const saveImage = async() => {
     if (makerList?.resultImage) {
       const resultImage = await makerList.resultImage;
