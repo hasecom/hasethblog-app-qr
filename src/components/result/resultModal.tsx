@@ -26,8 +26,13 @@ const ResultModal = () => {
   const saveImage = async() => {
     if (makerList?.resultImage) {
       const resultImage = await makerList.resultImage;
+      const binaryData  = atob(resultImage.split(',')[1]);
+      const dataArray = new Uint8Array(binaryData.length);
+      for (let i = 0; i < binaryData.length; i++) {
+        dataArray[i] = binaryData.charCodeAt(i);
+      }
       // Data URL から Blob を生成
-      const dataBlob = new Blob([resultImage], { type: 'image/png' });
+      const dataBlob = new Blob([dataArray], { type: 'image/png' });
       // ファイル保存ダイアログを表示
       saveAs(dataBlob, 'fkorw.png');
     }
