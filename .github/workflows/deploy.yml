@@ -10,7 +10,9 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
-
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }} 
+          
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -22,12 +24,18 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      - name: Check Output Directory
+        run: ls -la ./
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.0
         with:
-          server: ${{ secrets.SSH_SERVER }}
+          host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
-          port: ${{ secrets.FTP_PORT }}
-          local-dir: ./out/
-          remote-dir: /volume1/web/htdocs/hasethblog/app/
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cd /volume1/web/htdocs/hasethblog/app
+            rm -rf *
+            git clone --depth=1 https://hasecom:${{ secrets.YOUR_PAT_SECRET }}@github.com/hasecom/hasethblog-app-qr.git -b prod out
+            ls -la ./out
