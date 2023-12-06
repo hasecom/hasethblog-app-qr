@@ -13,6 +13,7 @@ const PreviewChild = () => {
             borderRadius="8px"
             overflow="hidden"
             position="relative"
+            ref={makerList?.html2canvasElementRef}
           >
         {(makerList?.makeList || []).filter(item => item.asin !== "").map((item, index) => (
             <DefaultView key={index} list={item} />

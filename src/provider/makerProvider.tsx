@@ -1,12 +1,12 @@
 'use client'
-import React, { useState} from 'react';
+import React, { useState ,useRef} from 'react';
 import { 
   MakerList, 
   MakerListProvide, 
 } from '@/type';
 import useDetailsSetting from './customHooks/useDetailsSetting';
 import MakerListContext from '@/context/makerListContext';
-
+import useHtml2canvas from '@/components/html2canvas/useHtml2canvas';
 type makerProvider = {
   children: React.ReactNode,
 }
@@ -14,6 +14,7 @@ type makerProvider = {
 const MakerProvider = ({ children }: makerProvider) => {
   const [makeList, setMakeList] = useState<MakerList[] | null>(null);
   const {settingList,updateSettingList} = useDetailsSetting();
+  const [captureElement,html2canvasElementRef,resultImage] = useHtml2canvas();
   const removeItemByIndex = (number:number) => {
     setMakeList((prevList) => {
       if (!prevList) return prevList;
@@ -40,7 +41,16 @@ const MakerProvider = ({ children }: makerProvider) => {
       return updatedList;
     });
   }
-  const makerListProvide: MakerListProvide = { makeList, changeMakeList,removeItemByIndex,settingList,updateSettingList };
+  const makerListProvide: MakerListProvide = { 
+    makeList, //作成するリスト
+    changeMakeList,//リストのonChange関数
+    removeItemByIndex,//リストのアイテム削除関数
+    settingList,//設定リスト
+    updateSettingList,//設定更新関数
+    captureElement,//html2canvasの対象要素
+    html2canvasElementRef,//画像化関数
+    resultImage
+   };
   return (
     <MakerListContext.Provider value={makerListProvide}>
       {children}
