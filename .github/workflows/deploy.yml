@@ -37,5 +37,5 @@ jobs:
           script: |
             cd /volume1/web/htdocs/hasethblog/app
             rm -rf *
-            git clone --depth=1 https://hasecom:${{ secrets.YOUR_PAT_SECRET }}@github.com/hasecom/hasethblog-app-qr.git -b prod out/*
+            git clone --depth=1 https://hasecom:${{ secrets.YOUR_PAT_SECRET }}@github.com/hasecom/hasethblog-app-qr.git -b prod out/
             ls -la ./out
