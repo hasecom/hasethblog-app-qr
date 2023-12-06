@@ -40,6 +40,3 @@ jobs:
             rm -rf *
             git clone --depth=1 https://hasecom:${{ secrets.YOUR_PAT_SECRET }}@github.com/hasecom/hasethblog-app-qr.git -b prod ./
             ls -la
-            mv out/* ./
-            rm -rf out/
-            ls -la
