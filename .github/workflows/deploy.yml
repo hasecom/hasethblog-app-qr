@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - prod 
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -21,10 +22,10 @@ jobs:
       - name: Check repository status
         run: git status
 
-        - name: Show changes
+      - name: Show changes
         run: git diff
 
-        - name: Show remote repository information
+      - name: Show remote repository information
         run: git remote -v
 
       - name: Install Dependencies
