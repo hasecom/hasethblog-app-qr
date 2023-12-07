@@ -27,6 +27,13 @@ jobs:
       - name: Check Output Directory
         run: ls -la ./
 
+      - name: Push to origin/swap
+        run: |
+          git checkout -b swap
+          git add .
+          git commit --author="GitHub Actions <actions@github.com>" -m "Build artifacts"
+          git push -u origin swap
+
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.0.0
         with:
