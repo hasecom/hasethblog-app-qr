@@ -11,7 +11,6 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-        path: path/to/repo-1
         with:
           token: ${{ secrets.GITHUB_TOKEN }} 
 
@@ -25,6 +24,8 @@ jobs:
 
       - name: Configure Git Identity
         run: |
+          pwd
+          ls -la
           git config user.email "${{ secrets.GIT_EMAIL }}"
           git config user.name "${{ secrets.GIT_USERNAME }}"
 
@@ -32,7 +33,6 @@ jobs:
         run: npm run build
       - name: Check Repository Status
         run: |
-          cd path/to/repo-1
           git status
     
       - name: Deploy via SSH
