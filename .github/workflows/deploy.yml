@@ -24,8 +24,6 @@ jobs:
 
       - name: Configure Git Identity
         run: |
-          pwd
-          ls -la
           git config user.email "${{ secrets.GIT_EMAIL }}"
           git config user.name "${{ secrets.GIT_USERNAME }}"
 
@@ -33,6 +31,8 @@ jobs:
         run: npm run build
       - name: Check Repository Status
         run: |
+          pwd
+          ls -la
           git status
     
       - name: Deploy via SSH
