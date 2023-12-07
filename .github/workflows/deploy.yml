@@ -40,7 +40,7 @@ jobs:
         run: |
           git add .
           git commit -m "github Actions"
-          git push origin HEAD:swap
+          git push -f origin HEAD:swap
         env:
           token: ${{ secrets.GITHUB_TOKEN }} 
     
