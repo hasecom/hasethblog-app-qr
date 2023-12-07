@@ -19,7 +19,7 @@ jobs:
           commit_message=$(git log -1 --pretty=%B)
           echo "Commit message: $commit_message"
 
-          if [[ "$commit_message" == *"[deploy]"* ]]; then
+          if [ "$commit_message" == *"[deploy]"* ]; then
             echo "Commit message contains '[deploy]'. Proceeding with the workflow."
 
             # [deploy] ブランチに対するステップを追加
