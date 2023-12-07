@@ -28,9 +28,8 @@ jobs:
           git config user.name "${{ secrets.GIT_USERNAME }}"
 
       - name: Build
-        run: npm run build
-      - name: Check Repository Status
         run: |
+          npm run build
           pwd
           ls -la
           git status
