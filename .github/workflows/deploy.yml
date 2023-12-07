@@ -11,6 +11,7 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+        path: path/to/repo-1
         with:
           token: ${{ secrets.GITHUB_TOKEN }} 
 
@@ -29,7 +30,11 @@ jobs:
 
       - name: Build
         run: npm run build
-
+      - name: Check Repository Status
+        run: |
+          cd path/to/repo-1
+          git status
+    
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.0.0
         with:
