@@ -19,15 +19,6 @@ jobs:
         with:
           node-version: 18.19.0 
 
-      - name: Check repository status
-        run: git status
-
-      - name: Show changes
-        run: git diff
-
-      - name: Show remote repository information
-        run: git remote -v
-
       - name: Install Dependencies
         run: npm install
 
@@ -42,6 +33,14 @@ jobs:
       - name: Check Output Directory
         run: ls -la ./
 
+      - name: Check repository status
+        run: git status
+
+      - name: Show changes
+        run: git diff
+
+      - name: Show remote repository information
+        run: git remote -v
       - name: Push to origin/swap
         run: |
           git checkout -b swap
