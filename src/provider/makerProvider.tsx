@@ -23,8 +23,8 @@ const MakerProvider = ({ children }: makerProvider) => {
       return updatedList;
     });
   };
-  const changeMakeList = (asinStr: string, number: number) => {
-    const list: MakerList = { asin: asinStr,number: number };
+  const changeMakeList = (asinStr: string, number: number,image:string,price:string,title:string,url:string) => {
+    const list: MakerList = { asin: asinStr,number: number,image:image,price:price,title:title,url:url };
     setMakeList((prevList) => {
       if (!prevList) {
         return [list];
