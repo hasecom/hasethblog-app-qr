@@ -13,19 +13,34 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }} 
           
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18.19.0 
+      - name: Check commit message and decide
+        run: |
+          if [[ "$(git log -1 --pretty=%B)" == *"[deploy]"* ]]; then
+            echo "Commit message contains '[deploy]'. Proceeding with the workflow."
 
-      - name: Install Dependencies
-        run: npm install
+            # Add steps for [deploy] branch
+            - name: Set up Node.js
+              uses: actions/setup-node@v4
+              with:
+                node-version: 18.19.0 
 
-      - name: Build
-        run: npm run build
+            - name: Install Dependencies
+              run: npm install
 
-      - name: Check Output Directory
-        run: ls -la ./out/_next/static/chunks/
+            - name: Build
+              run: npm run build
+
+          else
+            echo "Commit message does not contain '[deploy]'. Skipping workflow."
+            exit 78  # Exit code 78 skips the workflow
+
+      - name: Update prod branch
+        run: |
+          git add -A
+          git commit -m "Update prod branch with build artifacts"
+          git config --local user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git config --local user.name "${GITHUB_ACTOR}"
+          git push origin HEAD:prod
 
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.0.0
@@ -38,7 +53,7 @@ jobs:
             cd /volume1/web/htdocs/hasethblog/app
             ls -la
             rm -rf *
-            git clone --depth=1 --no-checkout https://hasecom:${{ secrets.YOUR_PAT_SECRET }}@github.com/hasecom/hasethblog-app-qr.git -b prod front/temp
+            git clone --depth=1 https://hasecom:${{ secrets.YOUR_PAT_SECRET }}@github.com/hasecom/hasethblog-app-qr.git -b prod front/temp
             ls -la front/temp/out/_next/static/chunks/
             ls -la
             mv front/temp/out/* front/
