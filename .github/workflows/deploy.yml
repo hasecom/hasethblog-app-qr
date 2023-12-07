@@ -16,24 +16,19 @@ jobs:
           
       - name: Check commit message and decide
         run: |
-          if [[ "$(git log -1 --pretty=%B)" == *"[deploy]"* ]]; then
+          commit_message=$(git log -1 --pretty=%B)
+          echo "Commit message: $commit_message"
+
+          if [[ "$commit_message" == *"[deploy]"* ]]; then
             echo "Commit message contains '[deploy]'. Proceeding with the workflow."
 
-            # Add steps for [deploy] branch
-            - name: Set up Node.js
-              uses: actions/setup-node@v4
-              with:
-                node-version: 18.19.0 
-
-            - name: Install Dependencies
-              run: npm install
-
-            - name: Build
-              run: npm run build
+            # [deploy] ブランチに対するステップを追加
+            npm install
+            npm run build
 
           else
             echo "Commit message does not contain '[deploy]'. Skipping workflow."
-            exit 78  # Exit code 78 skips the workflow
+            exit 78  # Exit code 78 はワークフローのスキップを示します
 
       - name: Update prod branch
         run: |
