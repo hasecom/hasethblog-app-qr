@@ -41,11 +41,9 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             cd /volume1/web/htdocs/hasethblog/app
-            ls -la
-            rm -rf *
-            git clone --depth=1 https://hasecom:${{ secrets.YOUR_PAT_SECRET }}@github.com/hasecom/hasethblog-app-qr.git -b swap front/temp
-            ls -la front/temp/out/_next/static/chunks/
-            ls -la
-            mv front/temp/out/* front/
-            rm -rf front/temp
-            ls -la
+           mkdir -p front/temp
+           cd front/temp
+           git init
+           git remote add origin https://hasecom:${{ secrets.YOUR_PAT_SECRET }}@github.com/hasecom/hasethblog-app-qr.git
+           git fetch --depth=1 origin swap:swap
+           git checkout swap
