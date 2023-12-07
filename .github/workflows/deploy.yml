@@ -45,3 +45,7 @@ jobs:
             git remote add origin https://hasecom:${{ secrets.YOUR_PAT_SECRET }}@github.com/hasecom/hasethblog-app-qr.git
             git fetch --depth=1 origin swap:swap
             git checkout swap
+
+      - name: Add and Commit Changes
+        run: |
+            git status         
