@@ -28,9 +28,7 @@ jobs:
           git config user.name "${{ secrets.GIT_USERNAME }}"
 
       - name: Build
-        run: |
-          npm run build
-          git status
+        run: npm run build
 
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.0.0
@@ -41,9 +39,9 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             cd /volume1/web/htdocs/hasethblog/app
-           mkdir -p front/temp
-           cd front/temp
-           git init
-           git remote add origin https://hasecom:${{ secrets.YOUR_PAT_SECRET }}@github.com/hasecom/hasethblog-app-qr.git
-           git fetch --depth=1 origin swap:swap
-           git checkout swap
+            mkdir -p front/temp
+            cd front/temp
+            git init
+            git remote add origin https://hasecom:${{ secrets.YOUR_PAT_SECRET }}@github.com/hasecom/hasethblog-app-qr.git
+            git fetch --depth=1 origin swap:swap
+            git checkout swap
