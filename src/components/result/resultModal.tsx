@@ -12,7 +12,6 @@ import {
 import Image from 'next/image';
 import { useContext, useEffect } from 'react';
 import MakerListContext from '@/context/makerListContext';
-import { saveAs } from 'file-saver';
 
 const ResultModal = () => {
   const makerList = useContext(MakerListContext);
@@ -32,8 +31,26 @@ const ResultModal = () => {
       }
       // Data URL から Blob を生成
       const dataBlob = new Blob([dataArray], { type: 'image/png' });
-      // ファイル保存ダイアログを表示
-      saveAs(dataBlob, 'fkorw.png');
+      
+      const blobUrl = URL.createObjectURL(dataBlob);
+      // 共有するデータ
+      const shareData = {
+        title: 'Image Share',
+        text: 'Check out this image!',
+        url: blobUrl,
+      };
+
+      // navigator.shareを使用してデータを共有
+      if (navigator.share) {
+        navigator.share(shareData)
+          .then(() => console.log('Shared successfully'))
+          .catch((error) => console.log('Error sharing:', error));
+      } else {
+        console.log('Web Share API not supported');
+      }
+
+      // 画像を共有した後、Blob URLを解放
+      URL.revokeObjectURL(blobUrl);
     }
   }
   return (
