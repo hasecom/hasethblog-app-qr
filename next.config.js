@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  distDir: "build",
+  webpack5: false,
+  output: 'export',
 }
 
 module.exports = nextConfig
