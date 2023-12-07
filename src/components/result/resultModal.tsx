@@ -11,7 +11,9 @@ import {
 } from '@chakra-ui/react'
 import Image from 'next/image';
 import { useContext, useEffect } from 'react';
+import { saveAs } from 'file-saver';
 import MakerListContext from '@/context/makerListContext';
+import { timestamp } from '@/utill/timestamp';
 
 const ResultModal = () => {
   const makerList = useContext(MakerListContext);
@@ -21,6 +23,7 @@ const ResultModal = () => {
       onOpen();
     }
   }, [makerList?.resultImage,onOpen]);
+  //保存処理
   const saveImage = async() => {
     if (makerList?.resultImage) {
       const resultImage = await makerList.resultImage;
@@ -29,26 +32,26 @@ const ResultModal = () => {
       for (let i = 0; i < binaryData.length; i++) {
         dataArray[i] = binaryData.charCodeAt(i);
       }
+      const fileName =  'QRメーカー_' + timestamp()+'.png';
       // Data URL から Blob を生成
       const dataBlob = new Blob([dataArray], { type: 'image/png' });
-      
-      //const blobUrl = URL.createObjectURL(dataBlob);
+
       // Blob を File オブジェクトに変換
-      const dataFile = new File([dataBlob], 'image.png', { type: dataBlob.type });
+      const dataFile = new File([dataBlob], fileName, { type: dataBlob.type });
 
       // 共有するデータ
       const shareData = {
         files: [dataFile],
-        title: 'Image Share',
-        text: 'Check out this image!',
+        title: 'アマゾン商品QRコードメーカー',
+        text: 'アマゾンの商品をQR化しました！',
       };
       // navigator.shareを使用してデータを共有
       if (navigator.share) {
         navigator.share(shareData)
           .then(() => console.log('Shared successfully'))
-          .catch((error) => alert('Error sharing:'));
+          .catch((error) => saveAs(dataBlob, fileName));
       } else {
-        alert('Web Share API not supported');
+        saveAs(dataBlob, fileName)
       }
     }
   }
@@ -68,10 +71,10 @@ const ResultModal = () => {
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={onClose}>
+            <Button  variant='ghost'  mr={3} onClick={onClose}>
               閉じる
             </Button>
-            <Button variant='ghost' onClick={saveImage}>画像を保存</Button>
+            <Button colorScheme='blue' onClick={saveImage}>画像を保存</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

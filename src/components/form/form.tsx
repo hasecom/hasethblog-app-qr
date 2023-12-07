@@ -14,7 +14,8 @@ const Form = () => {
   }
   return (
     <>
-      <Box mx={['10%', '20%', '30%']} width={['90%', '70%']} margin='auto'>
+
+      <Box mx={['auto', 'auto', 'auto', '10%', '20%', '30%']} width={['90%', '70%']}>
         <Box overflow={3 < inputCount ? 'scroll':'auto'} ref={divRef} height={divHeight}>
           {Array.from({ length: inputCount }, (_, index) => (
             <InputUrl key={index} number={index} />

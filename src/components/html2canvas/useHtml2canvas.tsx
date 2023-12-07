@@ -13,9 +13,11 @@ const useHtml2canvas =  () => {
     }
     try {
       const canvas = await html2canvas(targetElement);
+      canvas.getContext('2d', { willReadFrequently: true }); 
       const imageDataUrl:string = canvas.toDataURL();
       setResultImage(imageDataUrl);
     } catch (error) {
+      alert('作成失敗しました。')
       console.error('Error capturing element:', error);
     }
   };

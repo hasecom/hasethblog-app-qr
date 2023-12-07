@@ -6,7 +6,7 @@ const PreviewChild = () => {
   const makerList = useContext(MakerListContext);
   return (
     <>
-      <Box mx={['10%', '20%', '30%']} width={['90%', '70%']} margin='auto'>
+      <Box mx={['auto', 'auto', 'auto', '10%', '20%', '30%']} width={['90%', '70%']}>
         <Box position="relative">
         <Box
             border="2px solid #add8e6"

@@ -1,6 +1,7 @@
 import { useState,useContext } from 'react';
 import { Input,Flex,Button } from '@chakra-ui/react'
 import MakerListContext from '@/context/makerListContext';
+import { getAsin } from '@/utill/asin';
 type Props = {
   number:number
 }
@@ -12,7 +13,10 @@ const InputUrl:React.FC<Props> = ({number}) => {
     if (inputValue === null) {
       makeListContext?.removeItemByIndex(number);
     } else {
-      makeListContext?.changeMakeList(e.target.value, number);
+      //asinチェック
+      const asin = getAsin(e.target.value);
+      if(!asin) return;
+      makeListContext?.changeMakeList(asin, number);
     }
   };
 
