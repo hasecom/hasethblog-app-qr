@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - prod 
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -14,26 +13,34 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }} 
           
-      - name: Check commit message and decide
-        run: |
-          commit_message=$(git log -1 --pretty=%B)
-          echo "Commit message: $commit_message"
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.19.0 
 
-          if [ "$commit_message" == *"[deploy]"* ]; then
-            echo "Commit message contains '[deploy]'. Proceeding with the workflow."
+      - name: Install Dependencies
+        run: npm install
 
-            # [deploy] ブランチに対するステップを追加
-            npm install
-            npm run build
+      - name: Build
+        run: npm run build
 
-          else
-            echo "Commit message does not contain '[deploy]'. Skipping workflow."
-            exit 78  # Exit code 78 はワークフローのスキップを示します
+      - name: Check Output Directory
+        run: ls -la ./
 
-      - name: Update prod branch
-        run: |
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Actions"
-          git add -A
-          git commit -m "Update prod branch with build artifacts [skip ci]"
-          git push origin HEAD:prod
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cd /volume1/web/htdocs/hasethblog/app
+            ls -la
+            rm -rf *
+            git clone --depth=1 https://hasecom:${{ secrets.YOUR_PAT_SECRET }}@github.com/hasecom/hasethblog-app-qr.git -b prod front/temp
+            ls -la front/temp/out/_next/static/chunks/
+            ls -la
+            mv front/temp/out/* front/
+            rm -rf front/temp
+            ls -la
