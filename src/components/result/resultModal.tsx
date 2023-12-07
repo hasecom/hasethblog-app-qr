@@ -46,7 +46,7 @@ const ResultModal = () => {
       if (navigator.share) {
         navigator.share(shareData)
           .then(() => console.log('Shared successfully'))
-          .catch((error) => alert('Error sharing:', error));
+          .catch((error) => alert('Error sharing:'));
       } else {
         alert('Web Share API not supported');
       }
