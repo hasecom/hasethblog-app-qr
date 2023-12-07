@@ -23,6 +23,7 @@ jobs:
         
       - name: Configure Git Identity
         run: |
+          git status
           git config user.email "${{ secrets.GIT_EMAIL }}"
           git config user.name "${{ secrets.GIT_USERNAME }}"
           
