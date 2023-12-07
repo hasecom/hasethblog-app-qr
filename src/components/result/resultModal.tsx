@@ -49,7 +49,7 @@ const ResultModal = () => {
       if (navigator.share) {
         navigator.share(shareData)
           .then(() => console.log('Shared successfully'))
-          .catch((error) => saveAs(dataBlob, fileName));
+          .catch((error) => console.log(error));
       } else {
         saveAs(dataBlob, fileName)
       }

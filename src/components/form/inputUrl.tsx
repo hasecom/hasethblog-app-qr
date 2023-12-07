@@ -2,6 +2,7 @@ import { useState,useContext } from 'react';
 import { Input,Flex,Button } from '@chakra-ui/react'
 import MakerListContext from '@/context/makerListContext';
 import { getAsin } from '@/utill/asin';
+import { fetch } from '@/utill/axios';
 type Props = {
   number:number
 }
@@ -16,6 +17,10 @@ const InputUrl:React.FC<Props> = ({number}) => {
       //asinチェック
       const asin = getAsin(e.target.value);
       if(!asin) return;
+      const postData = {'asin':asin}
+      //const prodData = fetch(postData,'https://hasecom.angry.jp/amazon-qr-maker/request.php');
+      // if(!prodData) return;
+      // if(prodData['code'] == 0)
       makeListContext?.changeMakeList(asin, number);
     }
   };
