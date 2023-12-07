@@ -32,25 +32,24 @@ const ResultModal = () => {
       // Data URL から Blob を生成
       const dataBlob = new Blob([dataArray], { type: 'image/png' });
       
-      const blobUrl = URL.createObjectURL(dataBlob);
+      //const blobUrl = URL.createObjectURL(dataBlob);
+      // Blob を File オブジェクトに変換
+      const dataFile = new File([dataBlob], 'image.png', { type: dataBlob.type });
+
       // 共有するデータ
       const shareData = {
+        files: [dataFile],
         title: 'Image Share',
         text: 'Check out this image!',
-        url: blobUrl,
       };
-
       // navigator.shareを使用してデータを共有
       if (navigator.share) {
         navigator.share(shareData)
           .then(() => console.log('Shared successfully'))
-          .catch((error) => console.log('Error sharing:', error));
+          .catch((error) => alert('Error sharing:', error));
       } else {
-        console.log('Web Share API not supported');
+        alert('Web Share API not supported');
       }
-
-      // 画像を共有した後、Blob URLを解放
-      URL.revokeObjectURL(blobUrl);
     }
   }
   return (
