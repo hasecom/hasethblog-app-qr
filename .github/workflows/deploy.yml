@@ -28,11 +28,8 @@ jobs:
           git config user.name "${{ secrets.GIT_USERNAME }}"
 
       - name: Build
-        run: npm run build
-
-      - name: Create report file
-        uses: actions/checkout@v3
         run: |
+          npm run build
           git status
 
       - name: Deploy via SSH
