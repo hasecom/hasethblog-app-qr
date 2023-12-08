@@ -19,11 +19,11 @@ const DefaultView:React.FC<Props> = ({list}) => {
       {/* 右側のテキスト */}
       <Box>
       {makerList?.settingList.title.display &&
-        <Text fontSize="xl">あああ</Text>
+        <Text fontSize="xl">{list.title}</Text>
       }
       {makerList?.settingList.price.display &&
         <Text fontSize="sm" color="gray.500">
-          500円
+          {list.price}円
         </Text>
       }
       </Box>

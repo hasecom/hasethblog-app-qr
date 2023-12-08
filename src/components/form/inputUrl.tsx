@@ -1,18 +1,39 @@
 import { useState,useContext } from 'react';
 import { Input,Flex,Button } from '@chakra-ui/react'
 import MakerListContext from '@/context/makerListContext';
+import { getAsin } from '@/utill/asin';
+import { fetch } from '@/utill/axios';
 type Props = {
   number:number
 }
 const InputUrl:React.FC<Props> = ({number}) => {
   const [inputValue, setInputValue] = useState('');
   const makeListContext = useContext(MakerListContext);
-  const handleChange = (e:any) => {
+  const handleChange = async(e:any) => {
     setInputValue(e.target.value);
     if (inputValue === null) {
       makeListContext?.removeItemByIndex(number);
     } else {
-      makeListContext?.changeMakeList(e.target.value, number);
+      //asinチェック
+      const asin = getAsin(e.target.value);
+      if(!asin) return;
+      const postData = {'asin':asin}
+      const response = await fetch(postData,'https://hasecom.angry.jp/amazon-qr-maker/request.php');
+      if(response && response.data){ 
+        const responseData = response.data;
+        if(responseData['code'] && responseData['code'] != 0) return;
+        console.log();
+        makeListContext?.changeMakeList(
+          asin, 
+          number,
+          responseData.result.image,
+          responseData.result.price,
+          responseData.result.title,
+          responseData.result.url
+          );
+      }
+
+      
     }
   };
 

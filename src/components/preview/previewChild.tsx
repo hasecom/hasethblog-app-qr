@@ -6,13 +6,14 @@ const PreviewChild = () => {
   const makerList = useContext(MakerListContext);
   return (
     <>
-      <Box mx={['10%', '20%', '30%']} width={['90%', '70%']} margin='auto'>
+      <Box mx={['auto', 'auto', 'auto', '10%', '20%', '30%']} width={['90%', '70%']}>
         <Box position="relative">
         <Box
             border="2px solid #add8e6"
             borderRadius="8px"
             overflow="hidden"
             position="relative"
+            ref={makerList?.html2canvasElementRef}
           >
         {(makerList?.makeList || []).filter(item => item.asin !== "").map((item, index) => (
             <DefaultView key={index} list={item} />

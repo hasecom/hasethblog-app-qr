@@ -1,15 +1,22 @@
 
 export type MakerList = {
   number:number
-  asin:string
+  asin:string,
+  image:string,
+  price:string,
+  title:string,
+  url:string
 }
 
 export type MakerListProvide = {
   makeList:MakerList[] | null,
-  changeMakeList: (asin:string,number:number)=>void,
+  changeMakeList: (asin:string,number:number,image:string,price:string,title:string,url:string)=>void,
   removeItemByIndex:(number:number)=>void,
   settingList:DetailSetting,
-  updateSettingList:(newSettingList:DetailSetting)=>void
+  updateSettingList:(newSettingList:DetailSetting)=>void,
+  captureElement:React.MutableRefObject<null> | (() => Promise<void>) ,
+  html2canvasElementRef:(() => Promise<void>) | React.MutableRefObject<null> ,
+  resultImage:string | null,
 }
 
 export type DetailSetting = {
