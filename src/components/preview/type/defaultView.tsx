@@ -23,7 +23,7 @@ const DefaultView:React.FC<Props> = ({list}) => {
       }
       {makerList?.settingList.price.display &&
         <Text fontSize="sm" color="gray.500">
-          {list.price}円
+          {list.price}
         </Text>
       }
       </Box>
