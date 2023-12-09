@@ -49,15 +49,15 @@ const InputUrl: React.FC<Props> = ({ number }) => {
       const responseData = response.data && response.data;
       if (!responseData ||!('code' in responseData)) throw '商品の取得に失敗しました。'
       if (responseData['code'] != 0) throw 'この商品は存在しません。';
-      setLastRequestAsin(asin);
-      makeListContext?.changeMakeList(
-        asin,
-        number,
-        responseData.result.image,
-        responseData.result.price,
-        responseData.result.title,
-        responseData.result.url
-      );
+      // setLastRequestAsin(asin);
+      // makeListContext?.changeMakeList(
+      //   asin,
+      //   number,
+      //   responseData.result.image,
+      //   responseData.result.price,
+      //   responseData.result.title,
+      //   responseData.result.url
+      // );
     } catch (error: unknown) {
       setError(typeof error === 'string' ? error : '');
     }
