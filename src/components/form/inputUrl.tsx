@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import { Input, Flex, Button, FormControl, FormErrorMessage } from '@chakra-ui/react'
 import MakerListContext from '@/context/makerListContext';
 import { getAsin } from '@/utill/asin';
-import { fetchWithoutData,fetch } from '@/utill/axios';
+import { fetchWithoutData,fetchWithData } from '@/utill/axios';
 type Props = {
   number: number
 }
@@ -36,8 +36,30 @@ const InputUrl: React.FC<Props> = ({ number }) => {
         makeListContext?.removeItemByIndex(number);
         throw '';
      }
-     const bbb = await fetchWithoutData('https://amzn.asia/d/c8nrQKP');
-     console.log(bbb)
+     fetch('https://amzn.asia/d/c8nrQKP',{
+     })
+     .then(response => {
+       // レスポンスヘッダーを取得
+       const headers = response.headers;
+   
+       // 特定のヘッダーの値を取得
+       const contentType = headers.get('content-type');
+   
+       console.log('全てのヘッダー:', headers);
+       console.log('Content-Typeヘッダーの値:', contentType);
+   
+       // レスポンス本文をJSONとして読み取る例
+       return response.json();
+     })
+     .then(data => {
+       console.log('レスポンスデータ:', data);
+     })
+     .catch(error => {
+       console.error('エラー:', error);
+     });
+   
+     //const bbb = await fetchWithoutData('https://amzn.asia/d/c8nrQKP');
+     //console.log(bbb)
      throw 'aaa';
       if (!decodeInputValue || decodeInputValue == "") throw '';
       //asinチェック
@@ -45,7 +67,7 @@ const InputUrl: React.FC<Props> = ({ number }) => {
       if (!asin) throw 'URLが正しくありません。';
       const postData = { 'asin': asin }
       if(lastResquestAsin == asin) throw '';
-      const response = await fetch(postData, 'https://hasecom.angry.jp/amazon-qr-maker/request.php');
+      const response = await fetchWithData(postData, 'https://hasecom.angry.jp/amazon-qr-maker/request.php');
       const responseData = response.data && response.data;
       if (!responseData ||!('code' in responseData)) throw '商品の取得に失敗しました。'
       if (responseData['code'] != 0) throw 'この商品は存在しません。';
