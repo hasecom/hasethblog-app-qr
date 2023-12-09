@@ -8,11 +8,12 @@ type Props = {
 }
 const InputUrl: React.FC<Props> = ({ number }) => {
   const [inputValue, setInputValue] = useState<string>('');
+  const [lastResquestAsin,setLastRequestAsin] = useState('');
   const [error, setError] = useState('');
   const makeListContext = useContext(MakerListContext);
 
   const handleChange = (e: any) => {
-    if(e.target.value != null) getProduct(e.target.value);
+    getProduct(e.target.value);
   }
   const handlePaste =  () => {
     if (!navigator.clipboard) {
@@ -31,19 +32,21 @@ const InputUrl: React.FC<Props> = ({ number }) => {
     try {
       const decodeInputValue = decodeURIComponent(getInputValue)
       setInputValue(decodeInputValue);
-      if (inputValue == null) {
+      if (getInputValue == "") {
         makeListContext?.removeItemByIndex(number);
-        return;
-      }
+        throw '';
+     }
       if (!decodeInputValue || decodeInputValue == "") throw '';
       //asinチェック
       const asin = getAsin(decodeInputValue);
       if (!asin) throw 'URLが正しくありません。';
       const postData = { 'asin': asin }
+      if(lastResquestAsin == asin) throw '';
       const response = await fetch(postData, 'https://hasecom.angry.jp/amazon-qr-maker/request.php');
       const responseData = response.data && response.data;
-      if (!responseData || !responseData['code']) throw '商品の取得に失敗しました。'
+      if (!responseData ||!('code' in responseData)) throw '商品の取得に失敗しました。'
       if (responseData['code'] != 0) throw 'この商品は存在しません。';
+      setLastRequestAsin(asin);
       makeListContext?.changeMakeList(
         asin,
         number,

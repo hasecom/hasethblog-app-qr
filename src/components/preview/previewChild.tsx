@@ -1,9 +1,12 @@
-import React, {  useContext, } from 'react';
+import React, {  useContext,useEffect } from 'react';
 import { Box,Text } from '@chakra-ui/react'
 import MakerListContext from '@/context/makerListContext';
 import DefaultView from './type/defaultView';
 const PreviewChild = () => {
   const makerList = useContext(MakerListContext);
+  useEffect(()=>{
+    console.log(makerList?.makeList);
+  },[makerList?.makeList])
   return (
     <>
       <Box mx={['auto', 'auto', 'auto', '10%', '20%', '30%']} width={['90%', '70%']}>

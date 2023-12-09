@@ -15,15 +15,15 @@ const MakerProvider = ({ children }: makerProvider) => {
   const [makeList, setMakeList] = useState<MakerList[] | null>(null);
   const {settingList,updateSettingList} = useDetailsSetting();
   const [captureElement,html2canvasElementRef,resultImage] = useHtml2canvas();
-  const removeItemByIndex = (number:number) => {
+  const removeItemByIndex = async(number:number) => {
     setMakeList((prevList) => {
       if (!prevList) return prevList;
-      const updatedList = [...prevList];
-      updatedList.splice(number, 1);
+      const updatedList = prevList.filter(item => item.number !== number);
       return updatedList;
     });
   };
   const changeMakeList = (asinStr: string, number: number,image:string,price:string,title:string,url:string) => {
+
     const list: MakerList = { asin: asinStr,number: number,image:image,price:price,title:title,url:url };
     setMakeList((prevList) => {
       if (!prevList) {
