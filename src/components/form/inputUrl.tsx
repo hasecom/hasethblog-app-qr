@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import { Input, Flex, Button, FormControl, FormErrorMessage } from '@chakra-ui/react'
 import MakerListContext from '@/context/makerListContext';
 import { getAsin } from '@/utill/asin';
-import { fetch } from '@/utill/axios';
+import { fetchWithoutData,fetch } from '@/utill/axios';
 type Props = {
   number: number
 }
@@ -36,6 +36,9 @@ const InputUrl: React.FC<Props> = ({ number }) => {
         makeListContext?.removeItemByIndex(number);
         throw '';
      }
+     const bbb = await fetchWithoutData('https://amzn.asia/d/c8nrQKP');
+     console.log(bbb)
+     throw 'aaa';
       if (!decodeInputValue || decodeInputValue == "") throw '';
       //asinチェック
       const asin = getAsin(decodeInputValue);
