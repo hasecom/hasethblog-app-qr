@@ -2,8 +2,9 @@ import ReactMarkdown from 'react-markdown';
 import '@/assets/style/custom-markdown.css';
 
 const markdownText = `
-#### 当サービスについて
+#### プライバシーポリシー・免責事項
 ##### 当サービスが利用する情報
+　
 当サービスでは、ASINを元にAmazonの商品URLを取得して、QRコードを生成します。  
 サービス品質向上のため、QRコード化した商品のログを取得しております。    
 これは、個人を特定する情報を含んでおりません。  
