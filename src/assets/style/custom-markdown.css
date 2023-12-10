@@ -1,0 +1,12 @@
+.custom-markdown {
+  line-height: 1.5;
+  font-size: 0.85em;
+}
+.custom-markdown h3 {
+  padding-top:10px;
+  font-size: 1.15em;
+  font-weight: bold;
+}
+.custom-markdown strong {
+  background: linear-gradient(transparent 60%, yellow 40%);
+}

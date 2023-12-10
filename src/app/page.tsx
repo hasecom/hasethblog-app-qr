@@ -4,6 +4,7 @@ import Form from "@/components/form/form";
 import PreviewParent from "@/components/preview/previewParent";
 import MakerProvider from '@/provider/makerProvider';
 import ResultModal from "@/components/result/resultModal";
+import Widget from "@/components/widget/widget";
 import Footer from "@/components/footer/footer";
 const Home = () => {
   return (
@@ -12,7 +13,8 @@ const Home = () => {
       <MakerProvider>
         <Form />
         <PreviewParent />
-        <ResultModal />
+          <ResultModal />
+          <Widget />
         <Footer />
       </MakerProvider>
     </main>
