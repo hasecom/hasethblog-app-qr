@@ -10,3 +10,32 @@
 .custom-markdown strong {
   background: linear-gradient(transparent 60%, yellow 40%);
 }
+
+.custom-markdown h4 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.15em;
+  font-weight: bold;
+	text-align: center;
+}
+
+.custom-markdown h4::before,
+.custom-markdown h4::after {
+	content: '';
+	width: 70px;
+	height: 3px;
+	background-color: #e3bf00;
+}
+
+.custom-markdown h4::before {
+	margin-right: 20px;
+}
+.custom-markdown h4::after {
+	margin-left: 20px;
+}
+.custom-markdown h5 {
+  padding-top:10px;
+  font-size: 1.10em;
+  font-weight: bold;
+}
