@@ -17,6 +17,8 @@ export type MakerListProvide = {
   captureElement:React.MutableRefObject<null> | (() => Promise<void>) ,
   html2canvasElementRef:(() => Promise<void>) | React.MutableRefObject<null> ,
   resultImage:string | null,
+  handleAsyncMakerList:(isAsync:boolean)=>void,
+  asyncMakerList:boolean
 }
 
 export type DetailSetting = {

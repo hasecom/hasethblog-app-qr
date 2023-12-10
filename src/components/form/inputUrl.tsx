@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import { Input, Flex, Button, FormControl, FormErrorMessage } from '@chakra-ui/react'
 import MakerListContext from '@/context/makerListContext';
 import { getAsin,getShortUrl } from '@/utill/asin';
-import { fetchWithoutData,fetchWithData } from '@/utill/axios';
+import { fetchWithData } from '@/utill/axios';
 type Props = {
   number: number
 }
@@ -43,7 +43,9 @@ const InputUrl: React.FC<Props> = ({ number }) => {
       if (!asin && !amzn_url) throw 'URLが正しくありません。';
       const postData = { 'asin': asin,'amzn_url':amzn_url }
       if(lastResquestAsin == asin) throw '';
+      makeListContext?.handleAsyncMakerList(true);
       const response = await fetchWithData(postData, 'https://hasecom.angry.jp/amazon-qr-maker/request.php');
+      makeListContext?.handleAsyncMakerList(false);
       const responseData = response.data && response.data;
       if (!responseData ||!('code' in responseData)) throw '商品の取得に失敗しました。'
       if (responseData['code'] != 0) throw 'この商品は存在しません。';

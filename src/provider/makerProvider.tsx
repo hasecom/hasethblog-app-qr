@@ -1,5 +1,5 @@
 'use client'
-import React, { useState ,useRef} from 'react';
+import React, { useState } from 'react';
 import { 
   MakerList, 
   MakerListProvide, 
@@ -7,6 +7,7 @@ import {
 import useDetailsSetting from './customHooks/useDetailsSetting';
 import MakerListContext from '@/context/makerListContext';
 import useHtml2canvas from '@/components/html2canvas/useHtml2canvas';
+import useAsyncMakerList from './customHooks/useAsyncMarkerList';
 type makerProvider = {
   children: React.ReactNode,
 }
@@ -15,6 +16,7 @@ const MakerProvider = ({ children }: makerProvider) => {
   const [makeList, setMakeList] = useState<MakerList[] | null>(null);
   const {settingList,updateSettingList} = useDetailsSetting();
   const [captureElement,html2canvasElementRef,resultImage] = useHtml2canvas();
+  const [handleAsyncMakerList,asyncMakerList] = useAsyncMakerList();
   const removeItemByIndex = async(number:number) => {
     setMakeList((prevList) => {
       if (!prevList) return prevList;
@@ -23,7 +25,6 @@ const MakerProvider = ({ children }: makerProvider) => {
     });
   };
   const changeMakeList = (asinStr: string, number: number,image:string,price:string,title:string,url:string) => {
-
     const list: MakerList = { asin: asinStr,number: number,image:image,price:price,title:title,url:url };
     setMakeList((prevList) => {
       if (!prevList) {
@@ -49,7 +50,9 @@ const MakerProvider = ({ children }: makerProvider) => {
     updateSettingList,//設定更新関数
     captureElement,//html2canvasの対象要素
     html2canvasElementRef,//画像化関数
-    resultImage
+    resultImage,
+    handleAsyncMakerList,//非同期通信中の待機判定用(セット)
+    asyncMakerList//非同期通信中の待機判定用
    };
   return (
     <MakerListContext.Provider value={makerListProvide}>
