@@ -10,13 +10,13 @@ const markdownText = `
  - **保存した画像を印刷し必要に応じてカメラをかざすことで、直感的に商品ページに移動できます。**  
 　  
 　 
- ![QRコードをカメラロールから読み取る](https://hasethblog.com/wp-content/uploads/2023/12/無題477_20231211211102-1.png) 
+ ![QRコードをカメラロールから読み取る](https://hasethblog.com/wp-content/uploads/2023/12/無題478_20231211211630-1.png) 
 　  
 　  
  - **カメラロールから、QRコードを長押しすると、リンクへ移動することができます。**  
 　  
 　  
- ![QRコードをカメラロールから読み取る](https://hasethblog.com/wp-content/uploads/2023/12/無題478_20231211211630-1.png) 
+ ![QRコードをカメラロールから読み取る](https://hasethblog.com/wp-content/uploads/2023/12/無題477_20231211211102-1.png) 
 　  
 　   
  #### 使い方
