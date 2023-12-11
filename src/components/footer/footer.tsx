@@ -1,5 +1,5 @@
 import  {  useContext, } from 'react';
-import { Button, Flex, Text } from "@chakra-ui/react";
+import { Button, Flex } from "@chakra-ui/react";
 import Setting from "../setting/setting";
 import MakerListContext from '@/context/makerListContext';
 
@@ -23,12 +23,9 @@ const Footer = () => {
       justify="center"
       align="center"
     >
-      <Button colorScheme="gray" size="md"  mx={2} >
-        使い方
-      </Button>
       <Setting />
       <Button colorScheme="blue" size="md" mx={2} onClick={handleCreate}>
-        作成する
+        QR画像生成
       </Button>
     </Flex>
   );

@@ -52,7 +52,7 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd /volume1/web/htdocs/hasethblog/app
+            cd /volume1/web/htdocs/hasethblog/qr
             ls -la
             rm -rf *
             git clone --depth=1 https://hasecom:${{ secrets.YOUR_PAT_SECRET }}@github.com/hasecom/hasethblog-app-qr.git -b swap front/temp
