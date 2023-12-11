@@ -39,3 +39,7 @@
   font-size: 1.10em;
   font-weight: bold;
 }
+.custom-markdown img {
+  width:40em;
+  margin:0 auto;
+}
