@@ -29,7 +29,7 @@ export default function RootLayout({
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content="Amazon商品QRコードメーカー" />
           <meta name="twitter:description" content="Amazonの商品をQRコード化し、画像保存できるサービスです。印刷後スマホでかざしたり、カメラロールからリンク先に移動し、すぐ購入できます。" />
-          <meta name="twitter:image" content={process.env.NEXT_APP_URL + '/images/thumbnail.png'} />
+          <meta name="twitter:image" content={process.env.NEXT_PUBLIC_APP_URL + '/images/thumbnail.png'} />
       </head>
       <body className={inter.className}>
       <ChakraProviders>

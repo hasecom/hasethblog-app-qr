@@ -15,6 +15,9 @@ const InputUrl: React.FC<Props> = ({ number }) => {
   const handleChange = (e: any) => {
     getProduct(e.target.value);
   }
+  const handleClear = () =>  {
+    getProduct('');
+  }
   const handlePaste =  () => {
     if (!navigator.clipboard) {
       alert('ペースト機能が、お使いの環境に対応していないか、クリップボードにコピーされていません。');
@@ -33,6 +36,7 @@ const InputUrl: React.FC<Props> = ({ number }) => {
       const decodeInputValue = decodeURIComponent(getInputValue)
       setInputValue(decodeInputValue);
       if (getInputValue == "") {
+        setLastRequestAsin('');
         makeListContext?.removeItemByIndex(number);
         throw '';
      }
@@ -42,9 +46,9 @@ const InputUrl: React.FC<Props> = ({ number }) => {
       const amzn_url = getShortUrl(decodeInputValue);
       if (!asin && !amzn_url) throw 'URLが正しくありません。';
       const postData = { 'asin': asin,'amzn_url':amzn_url }
-      if(lastResquestAsin == asin) throw '';
+      if(lastResquestAsin == asin ) throw '';
       makeListContext?.handleAsyncMakerList(true);
-      const response = await fetchWithData(postData, 'https://hasecom.angry.jp/amazon-qr-maker/request.php');
+      const response = await fetchWithData(postData, process.env.NEXT_PUBLIC_API_URL+'/amazon-qr-maker/request.php');
       makeListContext?.handleAsyncMakerList(false);
       const responseData = response.data && response.data;
       if (!responseData ||!('code' in responseData)) throw '商品の取得に失敗しました。'
@@ -64,17 +68,20 @@ const InputUrl: React.FC<Props> = ({ number }) => {
   }
   return (
     <FormControl isInvalid={!!error}>
-      <Flex justifyContent="space-between" alignItems="center" p={2}>
+      <Flex justifyContent="space-between" alignItems="center" py={2}>
         <Input
           flex="1"
-          mr={2}
+          mr={1}
           type="text"
           placeholder={`Amazonの商品リンクを入力【 ${number + 1} 】`}
           _placeholder={{ fontSize: '0.75rem' }}
           value={inputValue}
           onChange={handleChange}
         />
-        <Button size="sm" onClick={handlePaste}>
+        <Button colorScheme='red' variant='ghost' size="xs" onClick={handleClear} mr="2px">
+          クリア
+        </Button>
+        <Button colorScheme='teal' variant='ghost' size="xs" onClick={handlePaste}>
           ペースト
         </Button>
       </Flex>
