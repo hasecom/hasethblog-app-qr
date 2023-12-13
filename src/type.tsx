@@ -11,6 +11,7 @@ export type MakerList = {
 export type MakerListProvide = {
   makeList:MakerList[] | null,
   changeMakeList: (asin:string,number:number,image:string,price:string,title:string,url:string)=>void,
+  changeMakeListTitle:(title:string)=>void,
   removeItemByIndex:(number:number)=>void,
   settingList:DetailSetting,
   updateSettingList:(newSettingList:DetailSetting)=>void,

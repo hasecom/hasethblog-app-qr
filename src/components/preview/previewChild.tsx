@@ -7,13 +7,16 @@ const PreviewChild = () => {
   return (
     <>
       <Box mx={['auto', 'auto', 'auto', '10%', '20%', '30%']} width={['90%', '70%']}>
-        <Box position="relative">
-          <Box
+        <Box position="relative"
             border="2px solid #add8e6"
             borderRadius="8px"
+                    >
+          <Box
             overflow="hidden"
             position="relative"
             ref={makerList?.html2canvasElementRef}
+            paddingX={5}
+            paddingY={10} 
           >
             {makerList?.asyncMakerList ? (
                <Box p={4}> 

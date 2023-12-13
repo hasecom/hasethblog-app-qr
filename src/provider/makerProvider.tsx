@@ -42,9 +42,21 @@ const MakerProvider = ({ children }: makerProvider) => {
       return updatedList;
     });
   }
+  const changeMakeListTitle = (title: string) => {
+    setMakeList((prevList: MakerList[] | null) => {
+      if (prevList === null) {
+        return null; 
+      }
+      return prevList.map((item) => ({
+        ...item,
+        title: title,
+      }));
+    });
+  };
   const makerListProvide: MakerListProvide = { 
     makeList, //作成するリスト
     changeMakeList,//リストのonChange関数
+    changeMakeListTitle,
     removeItemByIndex,//リストのアイテム削除関数
     settingList,//設定リスト
     updateSettingList,//設定更新関数

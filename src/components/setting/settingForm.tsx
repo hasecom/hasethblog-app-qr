@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { SettingTitleDisplay } from './settingTitle';
+import { SettingTitleDisplay,SettingTitleSize } from './settingTitle';
 import { SettingPriceDisplay } from './settingPrice';
 import { SettingQrSize} from './settingQr';
 const SettingForm = () => {
@@ -8,6 +8,7 @@ const SettingForm = () => {
   return (
     <>
       <SettingTitleDisplay />
+      <SettingTitleSize />
       <SettingPriceDisplay />
       <SettingQrSize />
     </>
