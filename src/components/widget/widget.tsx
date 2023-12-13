@@ -4,7 +4,7 @@ import DescriptionMd from "@/assets/md/descriptionMd";
 const Widget =  () =>  {
   return (
     <>
-      <Box mx={[0, 'auto']} width={['90%', '70%']}>
+      <Box mx={['auto', 'auto']} width={['90%', '65%']}>
         <Box position="relative" paddingTop="100px">
          <DescriptionMd />
         </Box>
