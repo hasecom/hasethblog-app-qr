@@ -19,7 +19,7 @@ const DefaultView:React.FC<Props> = ({list}) => {
       {/* 右側のテキスト */}
       <Box>
       {makerList?.settingList.title.display &&
-        <Text fontSize="xl">{list.title}</Text>
+        <Text fontSize={makerList?.settingList.title.fontSize + 'px'} whiteSpace="pre-line">{list.title}</Text>
       }
       {makerList?.settingList.price.display &&
         <Text fontSize="sm" color="gray.500">

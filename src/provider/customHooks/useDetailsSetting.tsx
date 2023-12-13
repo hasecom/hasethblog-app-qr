@@ -7,7 +7,7 @@ const useDetailsSetting = () => {
   const initSettingList:DetailSetting = {
     title:{
       fontColor:'blue',
-      fontSize:'20px',
+      fontSize:'20',
       display:true
     },
     price:{

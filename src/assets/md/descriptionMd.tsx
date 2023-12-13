@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import ReactMarkdown from 'react-markdown';
 import '@/assets/style/custom-markdown.css';
 
@@ -5,7 +6,7 @@ const markdownText = `
 #### サービス概要
 　   
 　  
-このサービスでは、AmazonのリンクからQRコードを生成し、画像保存できるフリーのAmazon QRコードメーカーです。このサービスを利用することで、定期的に購入したい商品を簡単に購入できるようになります。   
+このサービスでは、[Amazon](https://www.amazon.co.jp/) のリンクからQRコードを生成し、画像保存できるフリーのAmazon QRコードメーカーです。このサービスを利用することで、定期的に購入したい商品を簡単に購入できるようになります。   
 　   
  - **保存した画像を印刷し必要に応じてカメラをかざすことで、直感的に商品ページに移動できます。**  
 　  
@@ -52,9 +53,21 @@ QR画像生成ボタンをクリックすることで、画像が生成されま
 `;
 
 
+const  LinkRenderer = (props:any ) => {
+   return (
+     <a href={props.href} target="_blank" rel="noreferrer">
+       {props.children}
+     </a>
+   );
+ }
+
+
 const DescriptionMd =  () =>  {
    return (
-      <ReactMarkdown className="custom-markdown">
+      <ReactMarkdown 
+      className="custom-markdown"
+      components={{ a: LinkRenderer}}
+      >
          {markdownText}
       </ReactMarkdown>
    );

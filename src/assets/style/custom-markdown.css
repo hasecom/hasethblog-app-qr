@@ -43,3 +43,14 @@
   width:40em;
   margin:0 auto;
 }
+.custom-markdown a {
+  color: #0070f3;
+  text-decoration: none; 
+  transition: color 0.3s ease; 
+  font-weight:bold;
+  /* hover時のスタイル */
+  &:hover {
+    color: #0070f3;
+    text-decoration: underline;
+  }
+}
