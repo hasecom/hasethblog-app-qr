@@ -12,7 +12,7 @@ const GoogleAnalytics = () => {
 
   useEffect(() => {
     if (!existsGaId) {
-      return
+      return;
     }
     const url = pathname + searchParams.toString()
     pageview(url)

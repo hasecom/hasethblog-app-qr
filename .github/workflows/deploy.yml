@@ -49,10 +49,11 @@ jobs:
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
-          password: ${{ secrets.SSH_PASSWORD }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: |
-            cd /volume1/web/htdocs/hasethblog/qr
+            cd /home/hasecom/hasethblog.com/public_html/qr
             ls -la
             rm -rf *
             git clone --depth=1 https://hasecom:${{ secrets.YOUR_PAT_SECRET }}@github.com/hasecom/hasethblog-app-qr.git -b swap front/temp
