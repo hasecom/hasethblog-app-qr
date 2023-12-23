@@ -55,7 +55,7 @@ jobs:
           script: |
             cd /home/hasecom/hasethblog.com/public_html/qr
             ls -la
-            rm -rf *
+            rm -rf front
             git clone --depth=1 https://hasecom:${{ secrets.YOUR_PAT_SECRET }}@github.com/hasecom/hasethblog-app-qr.git -b swap front/temp
             ls -la
             mv front/temp/out/* front/
