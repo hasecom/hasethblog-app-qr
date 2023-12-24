@@ -22,7 +22,9 @@ jobs:
           node-version: 18.19.0 
 
       - name: Install Dependencies
-        run: npm install
+        run: | 
+          npm install
+          npm install --save-dev next-sitemap
 
       - name: Configure Git Identity
         run: |
