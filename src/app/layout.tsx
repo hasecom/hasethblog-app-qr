@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     googleBot: {
-      index: true,
+      index: true
     },
   },
 }
