@@ -33,7 +33,7 @@ jobs:
 
       - name: Build
         run: |
-          npm build
+          npm run build
           pwd
           ls -la
           git status
