@@ -9,6 +9,12 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Amazon商品QRコードメーカー',
   description: 'Amazonの商品をQRコード化し、画像保存できるサービスです。印刷後スマホでかざしたり、カメラロールからリンク先に移動し、すぐ購入できます。',
+  robots: {
+    index: true,
+    googleBot: {
+      index: true,
+    },
+  },
 }
 
 export default function RootLayout({
