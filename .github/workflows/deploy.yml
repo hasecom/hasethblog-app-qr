@@ -31,7 +31,7 @@ jobs:
 
       - name: Build
         run: |
-          next build && next-sitemap --config sitemap.config.js
+          next build
           pwd
           ls -la
           git status
