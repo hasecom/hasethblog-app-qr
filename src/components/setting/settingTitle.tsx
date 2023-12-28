@@ -34,7 +34,7 @@ export const SettingTitleDisplay = () => {
 
 export const SettingTitleSize = () => {
   const makerList = useContext(MakerListContext);
-  const initValue = (makerList ? ()=>{
+  const initValue = (makerList ?  ()=>{
     return makerList.settingList.title.fontSize
   } : '20' ) 
   const [value, setValue] = useState(initValue);

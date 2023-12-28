@@ -5,6 +5,9 @@ import {
 
 const useDetailsSetting = () => {
   const initSettingList:DetailSetting = {
+    type:{
+      layout:'default'
+    },
     title:{
       fontColor:'blue',
       fontSize:'20',

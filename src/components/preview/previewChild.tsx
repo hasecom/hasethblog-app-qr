@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { Box, Text, Skeleton } from '@chakra-ui/react'
 import MakerListContext from '@/context/makerListContext';
 import DefaultView from './type/defaultView';
+import VerticalView from './type/verticalView';
 const PreviewChild = () => {
   const makerList = useContext(MakerListContext);
   return (
@@ -9,8 +10,7 @@ const PreviewChild = () => {
       <Box mx={['auto', 'auto', 'auto', '10%', '20%', '30%']} width={['90%', '70%']}>
         <Box position="relative"
             border="2px solid #add8e6"
-            borderRadius="8px"
-                    >
+            borderRadius="8px">
           <Box
             overflow="hidden"
             position="relative"
@@ -27,7 +27,12 @@ const PreviewChild = () => {
               </Box>
             ) : (
               (makerList?.makeList || []).filter(item => item.asin !== "").map((item, index) => (
-                <DefaultView key={index} list={item} />
+                (makerList?.settingList.type.layout == 'default') ? 
+                  (<DefaultView key={index} list={item} />):
+                ((makerList?.settingList.type.layout == 'vertical') ?
+                  (<VerticalView key={index} list={item} />):
+                (<></>)
+                )
               ))
             )}
           </Box>

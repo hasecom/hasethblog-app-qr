@@ -2,7 +2,6 @@ import { useState, useRef, useEffect } from 'react';
 import { Box, Button, Flex,Checkbox } from '@chakra-ui/react'
 import InputUrl from "./inputUrl";
 const Form = () => {
-
   const [inputCount, setInputCount] = useState<number>(1);
   const { divHeight, divRef } = useInputWrapHeight(inputCount);
   const [isChecked, setIsChecked] = useState(false);

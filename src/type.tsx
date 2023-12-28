@@ -23,6 +23,9 @@ export type MakerListProvide = {
 }
 
 export type DetailSetting = {
+  type:{
+    layout:string
+  },
   title:{
     fontColor:string,
     fontSize:string,

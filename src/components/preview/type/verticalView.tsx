@@ -6,28 +6,28 @@ import MakerListContext from '@/context/makerListContext';
 type Props = {
   list:MakerList
 }
-const DefaultView:React.FC<Props> = ({list}) => {
+const VerticalView:React.FC<Props> = ({list}) => {
   const makerList = useContext(MakerListContext);
   return (
-    <Box p={2}>
-    <Flex align="center">
-      {/* 左側のQRコード */}
-      <Box mr={2}>
+<Box p={2}>
+  <Flex align="center" flexDirection="column">
+    <Flex>
+      <Box p={2}>
         <QrCode value={list.asin} size={makerList?.settingList.qr.size} />
       </Box>
-      {/* 右側のテキスト */}
-      <Box>
+    </Flex>
+    <Box>
       {makerList?.settingList.title.display &&
         <Text fontSize={makerList?.settingList.title.fontSize + 'px'} whiteSpace="pre-line">{list.title}</Text>
       }
       {makerList?.settingList.price.display &&
-        <Text fontSize="sm" color="gray.500">
+        <Text fontSize="sm" color="gray.500" textAlign="right">
           {list.price}
         </Text>
       }
-      </Box>
-    </Flex>
-  </Box>
+    </Box>
+  </Flex>
+</Box>
   )
 }
-export default DefaultView;
+export default VerticalView;
