@@ -9,6 +9,12 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Amazon商品QRコードメーカー',
   description: 'Amazonの商品をQRコード化し、画像保存できるサービスです。印刷後スマホでかざしたり、カメラロールからリンク先に移動し、すぐ購入できます。',
+  robots: {
+    index: true,
+    googleBot: {
+      index: true
+    },
+  },
 }
 
 export default function RootLayout({
@@ -20,6 +26,7 @@ export default function RootLayout({
     <html lang="ja">
       <head>
         <GoogleAnalytics />
+        <meta name="robots" content="index" />
         <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
