@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://qr.hasethblog.com
+
+# Sitemaps
+Sitemap: https://qr.hasethblog.com/sitemap.xml
